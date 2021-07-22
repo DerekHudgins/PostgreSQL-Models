@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS cats;
+
+CREATE TABLE cats (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    name TEXT NOT NULL,
+    age INTEGER NOT NULL,
+    favorite_food TEXT
+);
