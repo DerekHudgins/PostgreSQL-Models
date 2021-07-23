@@ -26,7 +26,7 @@ describe('cat routes', () => {
       favoriteFood: 'mice',
     });
 
-    const res = await request(app).get(`/api/v1/cats${tom.id}`);
+    const res = await request(app).get(`/api/v1/cats/${tom.id}`);
     
     expect(res.body).toEqual(tom);
   });
