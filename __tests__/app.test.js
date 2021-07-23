@@ -10,7 +10,7 @@ describe('cat routes', () => {
 
   it('creates a cat from post', async () => {
     const garfield = { name: 'garfeild', age: 15, favoriteFood: 'lassagna' };
-    const res = await (await request(app).post('/api/v1/cats')).setEncoding(garfield);
+    const res = await request(app).post('/api/v1/cats').send(garfield);
 
     expect(res.body).toEqual({
       id: '1',
