@@ -10,7 +10,7 @@ describe('cat routes', () => {
   });
 
   it('creates a cat from post', async () => {
-    const garfield = { name: 'garfeild', age: 15, favoriteFood: 'lassagna' };
+    const garfield = { name: 'garfield', age: 15, favoriteFood: 'lassagna' };
     const res = await request(app).post('/api/v1/cats').send(garfield);
 
     expect(res.body).toEqual({
@@ -29,5 +29,29 @@ describe('cat routes', () => {
     const res = await request(app).get(`/api/v1/cats/${tom.id}`);
     
     expect(res.body).toEqual(tom);
+  });
+
+  it('gets all cats from get', async () => {
+    const tom = await Cat.insert({
+      name: 'tom',
+      age: 10,
+      favoriteFood: 'mice',
+    });
+    const garfield = await Cat.insert({
+      name: 'garfield',
+      age: 15,
+      favoriteFood: 'lassagna'
+    });
+    const sassy = await Cat.insert({
+      name: 'sassy',
+      age: 8,
+      favoriteFood: 'tuna'
+    });
+
+    return request(app)
+      .get('/api/v1/cats')
+      .then((res) => {
+        expect(res.body).toEqual([tom, garfield, sassy]);
+      });
   });
 });
