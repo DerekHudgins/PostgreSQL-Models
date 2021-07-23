@@ -54,4 +54,18 @@ describe('cat routes', () => {
         expect(res.body).toEqual([tom, garfield, sassy]);
       });
   });
+
+  it('updates a cat by id', async () => {
+    const tom = await Cat.insert({
+      name: 'tom',
+      age: 10,
+      favoriteFood: 'mice',
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/cats/${tom.id}`)
+      .send({ favoriteFood: 'trash' });
+
+    expect(res.body).toEqual({ ...tom, favoriteFood: 'trash'});
+  });
 });
