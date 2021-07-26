@@ -58,7 +58,7 @@ describe('game routes', () => {
         expect(res.body).toEqual([fallout, halo, darkSouls]);
       });
   });
-  it('updates a game by', async () => {
+  it('updates a game by id', async () => {
     const darkSouls = await Game.insert({
       title: 'Dark Souls',
       gameSystem: 'all',
