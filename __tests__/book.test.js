@@ -36,4 +36,29 @@ describe('book routes', () => {
 
     expect(res.body).toEqual(hitch);
   });
+  it('gets all books', async () => {
+    const hitch = await Book.insert ({ 
+      title: 'The Hitchhikes Guide To The Galaxy', 
+      author: 'Adams', 
+      genre: 'sifi' 
+    });
+
+    const breakfeast = await Book.insert({
+      title: 'Breakfast of Champions',
+      director: 'Vonuget',
+      genre: 'comedy/fiction',
+    });
+
+    const road = await Book.insert({
+      title: 'On The Road',
+      director: 'Kerouac',
+      genre: 'fiction',
+    });
+
+    return request(app)
+      .get('/api/v1/books')
+      .then((res) => {
+        expect(res.body).toEqual([hitch, breakfeast, road]);
+      });
+  });
 });
