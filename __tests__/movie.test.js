@@ -13,7 +13,8 @@ describe('Movie routes', () => {
     const royal = { 
       title: 'WThe Royal Tenenbaums', 
       director: 'Wes Anderson', 
-      genre: 'comedy-drama' };
+      genre: 'comedy-drama' 
+    };
   
     const res = await request(app)
       .post('/api/v1/movies')
@@ -24,14 +25,14 @@ describe('Movie routes', () => {
       ...royal
     });
   });
-  it('gets a movie by id', async () => {
-    const royal = { 
-      title: 'WThe Royal Tenenbaums', 
+  it('gets a movie by id ', async () => {
+    const life = await Movie.insert ({ 
+      title: 'Life Auqatic', 
       director: 'Wes Anderson', 
-      genre: 'comedy-drama' };
+      genre: 'comedy-drama' 
+    });
+    const res = await request(app).get(`/api/v1/movies/${life.id}`);
 
-    const res = await request(app).get(`/api/v1/movies/${royal.id}`);
-
-    expect(res.body).toEqual(royal);
+    expect(res.body).toEqual(life);
   });
 });
