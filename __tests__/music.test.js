@@ -61,4 +61,17 @@ describe('music routes', () => {
         expect(res.body).toEqual([boy, radio, car]);
       });
   });
+  it('updates a band by id', async () => {
+    const car = await Music.insert ({  
+      artist: 'Car Seat Headrest', 
+      album: 'Teens of Denial', 
+      song: 'fill in the blank' 
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/music/${car.id}`)
+      .send({ song: 'teens of style' });
+
+    expect(res.body).toEqual({ ...car, song: 'teens of style' });
+  });
 });
