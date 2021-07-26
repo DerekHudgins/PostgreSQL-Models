@@ -61,4 +61,17 @@ describe('book routes', () => {
         expect(res.body).toEqual([hitch, breakfeast, road]);
       });
   });
+  it('updates a book by id', async () => {
+    const breakfeast = await Book.insert({
+      title: 'Breakfast of Champions',
+      author: 'Vonuget',
+      genre: 'comedy/fiction',
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/movies/${darjeeling.id}`)
+      .send({ title: 'Dinner of losers'  });
+
+    expect(res.body).toEqual({ ...darjeeling, title: 'Dinner of losers' });
+  });
 });
