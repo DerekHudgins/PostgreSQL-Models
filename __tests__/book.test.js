@@ -2,6 +2,7 @@ import pool from '../lib/utils/pool.js';
 import setup from '../data/setup.js';
 import request from 'supertest';
 import app from '../lib/app.js';
+import Book from '../lib/models/Book.js';
 
 
 describe('book routes', () => {
@@ -24,5 +25,15 @@ describe('book routes', () => {
       id: '1',
       ...hitch
     });
+  });
+  it('gets a book by id ', async () => {
+    const hitch = await Book.insert ({ 
+      title: 'The Hitchhikes Guide To The Galaxy', 
+      author: 'Adams', 
+      genre: 'sifi' 
+    });
+    const res = await request(app).get(`/api/v1/books/${hitch.id}`);
+
+    expect(res.body).toEqual(hitch);
   });
 });
