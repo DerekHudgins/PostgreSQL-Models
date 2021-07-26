@@ -69,9 +69,9 @@ describe('book routes', () => {
     });
 
     const res = await request(app)
-      .put(`/api/v1/movies/${darjeeling.id}`)
+      .put(`/api/v1/books/${breakfeast.id}`)
       .send({ title: 'Dinner of losers'  });
 
-    expect(res.body).toEqual({ ...darjeeling, title: 'Dinner of losers' });
+    expect(res.body).toEqual({ ...breakfeast, title: 'Dinner of losers' });
   });
 });
