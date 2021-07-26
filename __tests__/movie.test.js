@@ -24,4 +24,14 @@ describe('Movie routes', () => {
       ...royal
     });
   });
+  it('gets a movie by id', async () => {
+    const royal = { 
+      title: 'WThe Royal Tenenbaums', 
+      director: 'Wes Anderson', 
+      genre: 'comedy-drama' };
+
+    const res = await request(app).get(`/api/v1/movies/${royal.id}`);
+
+    expect(res.body).toEqual(royal);
+  });
 });
