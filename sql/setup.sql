@@ -33,3 +33,12 @@ CREATE TABLE books (
     author TEXT NOT NULL,
     genre TEXT NOT NULL
 );
+
+DROP TABLE IF EXISTS music;
+
+CREATE TABLE music (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    album TEXT NOT NULL,
+    artist TEXT NOT NULL,
+    song TEXT NOT NULL
+);
