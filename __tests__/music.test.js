@@ -28,12 +28,37 @@ describe('music routes', () => {
   });
   it('gets a band by id ', async () => {
     const boy = await Music.insert ({ 
-      artist: 'Boy Harshe', 
+      artist: 'Boy Harsher', 
       album: 'Careful', 
       song: 'fate' 
     });
     const res = await request(app).get(`/api/v1/music/${boy.id}`);
 
     expect(res.body).toEqual(boy);
+  });
+  it('gets all bands', async () => {
+    const boy = await Music.insert ({  
+      artist: 'Boy Harsher', 
+      album: 'Careful', 
+      song: 'fate' 
+    });
+
+    const radio = await Music.insert ({  
+      artist: 'Radiohead', 
+      album: 'In Rainbows', 
+      song: 'OK Computer' 
+    });
+
+    const car = await Music.insert ({  
+      artist: 'Car Seat Headrest', 
+      album: 'Teens of Denial', 
+      song: 'fill in the blank' 
+    });
+
+    return request(app)
+      .get('/api/v1/music')
+      .then((res) => {
+        expect(res.body).toEqual([boy, radio, car]);
+      });
   });
 });
