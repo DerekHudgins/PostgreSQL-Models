@@ -21,4 +21,16 @@ describe('game routes', () => {
       ...warcraft
     });
   });
+
+  it('gets a game by id', async () => {
+    const fallout = await Game.insert({
+      title: 'fallout',
+      gameSystem: 'all',
+      genre: 'rpg',
+    });
+
+    const res = await request(app).get(`/api/v1/games/${fallout.id}`);
+
+    expect(res.body).toEqual(fallout);
+  });
 });
