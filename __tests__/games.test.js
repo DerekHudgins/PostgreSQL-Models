@@ -33,4 +33,29 @@ describe('game routes', () => {
 
     expect(res.body).toEqual(fallout);
   });
+  it('gets all games', async () => {
+    const fallout = await Game.insert({
+      title: 'fallout',
+      gameSystem: 'all',
+      genre: 'rpg',
+    });
+
+    const halo = await Game.insert({
+      title: 'Halo',
+      gameSystem: 'xbox/pc',
+      genre: 'fps',
+    });
+
+    const darkSouls = await Game.insert({
+      title: 'Dark Souls',
+      gameSystem: 'all',
+      genre: 'rpg',
+    });
+
+    return request(app)
+      .get('/api/v1/games')
+      .then((res) => {
+        expect(res.body).toEqual([fallout, halo, darkSouls]);
+      });
+  });
 });
