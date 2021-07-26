@@ -74,4 +74,18 @@ describe('book routes', () => {
 
     expect(res.body).toEqual({ ...breakfeast, title: 'Dinner of losers' });
   });
+  it('deletes a book by id', async () => {
+    const breakfeast = await Book.insert({
+      title: 'Breakfast of Champions',
+      author: 'Vonuget',
+      genre: 'comedy/fiction',
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/books/${breakfeast.id}`);
+      
+    expect(res.body).toEqual({
+      message: `${breakfeast.title} has been deleted`
+    });
+  });
 });
