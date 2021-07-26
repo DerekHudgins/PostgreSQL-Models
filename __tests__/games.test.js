@@ -71,4 +71,17 @@ describe('game routes', () => {
 
     expect(res.body).toEqual({ ...darkSouls, title: 'DarkSouls 3' });
   });
+  it('deletes an existing game by id', async () => {
+    const darkSouls = await Game.insert({
+      title: 'Dark Souls',
+      gameSystem: 'all',
+      genre: 'rpg',
+    });
+
+    const res = await request(app).delete(`/api/v1/games/${Game.id}`);
+
+    expect(res.body).toEqual({
+      message: `${darkSouls.name} was deleted!`
+    });
+  });
 });
