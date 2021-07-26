@@ -45,13 +45,13 @@ describe('book routes', () => {
 
     const breakfeast = await Book.insert({
       title: 'Breakfast of Champions',
-      director: 'Vonuget',
+      author: 'Vonuget',
       genre: 'comedy/fiction',
     });
 
     const road = await Book.insert({
       title: 'On The Road',
-      director: 'Kerouac',
+      author: 'Kerouac',
       genre: 'fiction',
     });
 
