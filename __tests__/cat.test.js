@@ -66,7 +66,7 @@ describe('cat routes', () => {
       .put(`/api/v1/cats/${tom.id}`)
       .send({ favoriteFood: 'trash' });
 
-    expect(res.body).toEqual({ ...tom, favoriteFood: 'trash'});
+    expect(res.body).toEqual({ ...tom, favoriteFood: 'trash' });
   });
   it('deletes an existing cat by id', async () => {
     const cat = await Cat.insert({
