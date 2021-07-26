@@ -82,8 +82,6 @@ describe('game routes', () => {
     const res = await request(app)
       .delete(`/api/v1/games/${darkSouls.id}`);
       
-      
-    
     expect(res.body).toEqual({
       message: `${darkSouls.title} has been deleted`
     });

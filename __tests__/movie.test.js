@@ -73,4 +73,18 @@ describe('Movie routes', () => {
 
     expect(res.body).toEqual({ ...darjeeling, title: 'Owen Wilson in his prime' });
   });
+  it('deletes a movie by id', async () => {
+    const darjeeling = await Movie.insert({
+      title: 'the Darjeeling Limited',
+      director: 'Wes Anderson',
+      genre: 'comedy-drama',
+    });
+
+    const res = await request(app)
+      .delete(`/api/v1/movies/${darjeeling.id}`);
+      
+    expect(res.body).toEqual({
+      message: `${darjeeling.title} has been deleted`
+    });
+  });
 });
