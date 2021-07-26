@@ -15,3 +15,10 @@ CREATE TABLE games (
     game_system TEXT NOT NULL,
     genre TEXT NOT NULL
 );
+
+CREATE TABLE movies (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT NOT NULL,
+    director TEXT NOT NULL,
+    genre TEXT NOT NULL
+);
