@@ -70,8 +70,8 @@ describe('music routes', () => {
 
     const res = await request(app)
       .put(`/api/v1/music/${car.id}`)
-      .send({ song: 'teens of style' });
+      .send({ album: 'teens of style' });
 
-    expect(res.body).toEqual({ ...car, song: 'teens of style' });
+    expect(res.body).toEqual({ ...car, album: 'teens of style' });
   });
 });
