@@ -60,4 +60,17 @@ describe('Movie routes', () => {
         expect(res.body).toEqual([life, darjeeling, royal]);
       });
   });
+  it('updates a movie by id', async () => {
+    const darjeeling = await Movie.insert({
+      title: 'the Darjeeling Limited',
+      director: 'Wes Anderson',
+      genre: 'comedy-drama',
+    });
+
+    const res = await request(app)
+      .put(`/api/v1/movies/${darjeeling.id}`)
+      .send({ title: 'Owen Wilson in his prime' });
+
+    expect(res.body).toEqual({ ...darjeeling, title: 'Owen Wilson in his prime' });
+  });
 });
