@@ -74,4 +74,17 @@ describe('music routes', () => {
 
     expect(res.body).toEqual({ ...car, album: 'teens of style' });
   });
+  it('deletes a band by id', async () => {
+    const radio = await Music.insert ({  
+      artist: 'Radiohead', 
+      album: 'In Rainbows', 
+      song: 'OK Computer' 
+    });
+    const res = await request(app)
+      .delete(`/api/v1/music/${radio.id}`);
+      
+    expect(res.body).toEqual({
+      message: `${radio.artist} has been deleted`
+    });
+  });
 });
